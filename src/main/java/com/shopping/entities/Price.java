@@ -9,25 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="price")
-public class Price {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+public class Price extends BaseEntity{
 	
 	@Column(name="mrp")
 	private Double mrp;
 	
 	@Column(name="discountedPrice")
 	private Double discountedPrice;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Double getMrp() {
 		return mrp;
