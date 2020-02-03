@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="price")
-public class Price extends BaseEntity{
+public class Price extends BaseEntity {
 	
 	@Column(name="mrp")
 	private Double mrp;

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="lineItem")
-public class LineItem extends BaseEntity{
+public class LineItem extends BaseEntity {
 
 	@Column(name = "quantity")
 	private Integer quantity;
