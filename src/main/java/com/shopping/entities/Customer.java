@@ -1,7 +1,10 @@
 package com.shopping.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,10 +29,30 @@ public class Customer extends BaseEntity {
 	private List<Address> address;
 	
 	@OneToMany
-	private List<Phone> phoneNumbers;
+	private Set<Phone> phoneNumbers;
 	
 	@OneToOne(optional=true)
 	private User user;
+	
+	@OneToOne
+	private Account account;
+	
+	public Customer() {
+		address = new ArrayList<>();
+		phoneNumbers = new TreeSet<>();
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public void setPhoneNumbers(Set<Phone> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
 
 	public User getUser() {
 		return user;
@@ -69,13 +92,5 @@ public class Customer extends BaseEntity {
 
 	public void setAddress(List<Address> address) {
 		this.address = address;
-	}
-
-	public List<Phone> getPhoneNumbers() {
-		return phoneNumbers;
-	}
-
-	public void setPhoneNumbers(List<Phone> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
 	}
 }
