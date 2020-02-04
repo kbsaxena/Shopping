@@ -39,6 +39,17 @@ public class Account extends BaseEntity {
 	
 	@OneToOne
 	private ShoppingCart shoppingCart;
+	
+	@OneToOne
+	private Customer customer;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;

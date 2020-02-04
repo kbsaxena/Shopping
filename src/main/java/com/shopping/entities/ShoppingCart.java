@@ -1,6 +1,7 @@
 package com.shopping.entities;
 
 import java.util.Date;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.persistence.Column;
@@ -23,13 +24,17 @@ public class ShoppingCart {
 	private Account account;
 	
 	@OneToMany
-	private TreeSet<LineItem> lineItems;
+	private SortedSet<LineItem> lineItems;
+	
+	public ShoppingCart() {
+		lineItems = new TreeSet<>();
+	}
 
-	public TreeSet<LineItem> getLineItems() {
+	public SortedSet<LineItem> getLineItems() {
 		return lineItems;
 	}
 
-	public void setLineItems(TreeSet<LineItem> lineItems) {
+	public void setLineItems(SortedSet<LineItem> lineItems) {
 		this.lineItems = lineItems;
 	}
 
