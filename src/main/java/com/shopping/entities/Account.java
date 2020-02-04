@@ -36,6 +36,17 @@ public class Account extends BaseEntity {
 	
 	@OneToMany(mappedBy = "account")
 	private Set<Payment> payments;
+	
+	@OneToOne
+	private ShoppingCart shoppingCart;
+
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
 
 	public Address getBillingAddress() {
 		return billingAddress;
