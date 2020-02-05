@@ -6,14 +6,15 @@ import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
-public class Order extends BaseEntity{
+@Table(name = "orders")
+public class Orders extends BaseEntity {
 	
 	@Column
 	private LocalDate ordered;
@@ -21,7 +22,7 @@ public class Order extends BaseEntity{
 	@Column
 	private LocalDate shipped;
 	
-	@Column
+	@Enumerated
 	private OrderStatus status;
 	
 	@Column
@@ -30,14 +31,14 @@ public class Order extends BaseEntity{
 	@OneToOne
 	private Address shipTo;
 	
-	@ManyToOne
+	@ManyToOne 
 	private Account account;
 	
-	@OneToMany
-	private Set<Payment> payments = new TreeSet<>();
-	
-	@OneToMany
+	@OneToMany(mappedBy = "order")
 	private Set<LineItem> lineItems = new TreeSet<>();
+	
+	@OneToMany(mappedBy = "order")
+	private Set<Payment> payments = new TreeSet<>();
 
 	public LocalDate getOrdered() {
 		return ordered;
@@ -87,20 +88,20 @@ public class Order extends BaseEntity{
 		this.account = account;
 	}
 
-	public Set<Payment> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(Set<Payment> payments) {
-		this.payments = payments;
-	}
-
 	public Set<LineItem> getLineItems() {
 		return lineItems;
 	}
 
 	public void setLineItems(Set<LineItem> lineItems) {
 		this.lineItems = lineItems;
+	}
+
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
 	}
 	
 }
