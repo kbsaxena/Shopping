@@ -21,6 +21,17 @@ public class LineItem extends BaseEntity {
 	
 	@ManyToOne
 	private Product product;
+	
+	@ManyToOne
+	private ShoppingCart cart;
+
+	public ShoppingCart getCart() {
+		return cart;
+	}
+
+	public void setCart(ShoppingCart cart) {
+		this.cart = cart;
+	}
 
 	public Integer getQuantity() {
 		return quantity;
