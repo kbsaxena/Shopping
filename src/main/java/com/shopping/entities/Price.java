@@ -2,17 +2,21 @@ package com.shopping.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="price")
 public class Price extends BaseEntity {
 	
-	@Column(name="mrp")
+	@Column
 	private Double mrp;
 	
-	@Column(name="discountedPrice")
+	@Column
 	private Double discountedPrice;
+	
+	@OneToOne
+	private LineItem lineItem;
 
 	public Double getMrp() {
 		return mrp;
@@ -28,6 +32,14 @@ public class Price extends BaseEntity {
 
 	public void setDiscountedPrice(Double discountedPrice) {
 		this.discountedPrice = discountedPrice;
+	}
+
+	public LineItem getLineItem() {
+		return lineItem;
+	}
+
+	public void setLineItem(LineItem lineItem) {
+		this.lineItem = lineItem;
 	}
 
 }
