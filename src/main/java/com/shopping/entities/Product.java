@@ -17,15 +17,20 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product extends BaseEntity {
 	
+	public Product() {
+		this.lineItems = new ArrayList<>();
+		this.suppliers = new TreeSet<>();
+	}
+
 	@Column
 	private String name;
 	
 	@OneToMany(mappedBy = "product")
-	private List<LineItem> lineItems = new ArrayList<>();
+	private List<LineItem> lineItems;
 	
 	@ManyToMany
 	@JoinTable(name = "product_supplier", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "supplier_id"))
-	private Set<Supplier> suppliers = new TreeSet<>();
+	private Set<Supplier> suppliers;
 
 	public String getName() {
 		return name;

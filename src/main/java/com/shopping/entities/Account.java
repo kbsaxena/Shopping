@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Table(name="account")
 public class Account extends BaseEntity {
 
+	public Account() {
+		this.orders = new TreeSet<>();
+		this.payments = new TreeSet<>();
+	}
+
 	@OneToOne
 	private Address billingAddress;
 	
@@ -27,10 +32,10 @@ public class Account extends BaseEntity {
 	private Date close;
 	
 	@OneToMany(mappedBy = "account")
-	private Set<Orders> orders = new TreeSet<>();
+	private Set<Orders> orders;
 	
 	@OneToMany(mappedBy = "account")
-	private Set<Payment> payments = new TreeSet<>();
+	private Set<Payment> payments;
 
 	public Address getBillingAddress() {
 		return billingAddress;

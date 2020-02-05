@@ -16,6 +16,11 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Orders extends BaseEntity {
 	
+	public Orders() {
+		this.lineItems = new TreeSet<>();
+		this.payments = new TreeSet<>();
+	}
+
 	@Column
 	private LocalDate ordered;
 	
@@ -35,10 +40,10 @@ public class Orders extends BaseEntity {
 	private Account account;
 	
 	@OneToMany(mappedBy = "order")
-	private Set<LineItem> lineItems = new TreeSet<>();
+	private Set<LineItem> lineItems;
 	
 	@OneToMany(mappedBy = "order")
-	private Set<Payment> payments = new TreeSet<>();
+	private Set<Payment> payments;
 
 	public LocalDate getOrdered() {
 		return ordered;

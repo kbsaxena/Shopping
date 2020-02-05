@@ -9,10 +9,10 @@ import javax.persistence.Table;
 @Table(name="price")
 public class Price extends BaseEntity {
 	
-	@Column(name="mrp")
+	@Column
 	private Double mrp;
 	
-	@Column(name="discountedPrice")
+	@Column
 	private Double discountedPrice;
 	
 	@OneToOne

@@ -13,6 +13,10 @@ import javax.persistence.Table;
 @Table(name = "supplier")
 public class Supplier extends BaseEntity {
 	
+	public Supplier() {
+		this.products = new TreeSet<>();
+	}
+
 	@Column
 	private String name;
 	
@@ -20,7 +24,7 @@ public class Supplier extends BaseEntity {
 	private Address address;
 	
 	@ManyToMany(mappedBy = "suppliers")
-	private Set<Product> products = new TreeSet<>();
+	private Set<Product> products;
 
 	public String getName() {
 		return name;
