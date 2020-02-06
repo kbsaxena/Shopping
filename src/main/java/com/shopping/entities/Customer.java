@@ -38,6 +38,9 @@ public class Customer extends BaseEntity {
 	@OneToMany
 	private List<Address> address;
 	
+	@OneToOne(mappedBy="customer")
+	private Phone primaryPhoneNumber;
+	
 	@OneToMany(mappedBy="customer")
 	private Set<Phone> phoneNumbers;
 	
