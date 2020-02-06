@@ -30,18 +30,21 @@ public class LoginServiceImplTest implements Constants {
 	@InjectMocks
 	LoginServiceImpl loginService;
 	
+	private User user;
+	
 	@BeforeEach
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-	}
-
-	@Test
-	public final void testLoginWithValidCredentials() {
-		User user = new User();
+		
+		user = new User();
 		user.setId(1L);
 		user.setUsername(USERNAME);
 		user.setPassword(PASSWORD);
 		user.setUserState(UserState.ACTIVE);
+	}
+
+	@Test
+	public final void testLoginWithValidCredentials() {
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
 		
@@ -54,11 +57,6 @@ public class LoginServiceImplTest implements Constants {
 	
 	@Test
 	public final void testLoginWithInValidCredentials() {
-		User user = new User();
-		user.setId(1L);
-		user.setUsername(USERNAME);
-		user.setPassword(PASSWORD);
-		user.setUserState(UserState.ACTIVE);
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
 		
@@ -71,11 +69,6 @@ public class LoginServiceImplTest implements Constants {
 	
 	@Test
 	public final void testLoginWithInValidUser() {
-		User user = new User();
-		user.setId(1L);
-		user.setUsername(USERNAME);
-		user.setPassword(PASSWORD);
-		user.setUserState(UserState.ACTIVE);
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.empty());
 		
