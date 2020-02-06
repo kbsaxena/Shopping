@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "payment")
+@Getter
+@Setter
 public class Payment extends BaseEntity {
 	
 	@Column
@@ -25,46 +30,4 @@ public class Payment extends BaseEntity {
 	
 	@ManyToOne
 	private Account account;
-
-	public LocalDate getPaid() {
-		return paid;
-	}
-
-	public void setPaid(LocalDate paid) {
-		this.paid = paid;
-	}
-
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
-	public String getDetails() {
-		return details;
-	}
-
-	public void setDetails(String details) {
-		this.details = details;
-	}
-
-	public Orders getOrder() {
-		return order;
-	}
-
-	public void setOrder(Orders order) {
-		this.order = order;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	
 }

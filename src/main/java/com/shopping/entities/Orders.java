@@ -12,8 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
 public class Orders extends BaseEntity {
 	
 	public Orders() {
@@ -44,69 +49,4 @@ public class Orders extends BaseEntity {
 	
 	@OneToMany(mappedBy = "order")
 	private Set<Payment> payments;
-
-	public LocalDate getOrdered() {
-		return ordered;
-	}
-
-	public void setOrdered(LocalDate ordered) {
-		this.ordered = ordered;
-	}
-
-	public LocalDate getShipped() {
-		return shipped;
-	}
-
-	public void setShipped(LocalDate shipped) {
-		this.shipped = shipped;
-	}
-
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
-	}
-
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
-	public Address getShipTo() {
-		return shipTo;
-	}
-
-	public void setShipTo(Address shipTo) {
-		this.shipTo = shipTo;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public Set<LineItem> getLineItems() {
-		return lineItems;
-	}
-
-	public void setLineItems(Set<LineItem> lineItems) {
-		this.lineItems = lineItems;
-	}
-
-	public Set<Payment> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(Set<Payment> payments) {
-		this.payments = payments;
-	}
-	
 }

@@ -13,8 +13,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
 public class Product extends BaseEntity {
 	
 	public Product() {
@@ -31,29 +36,4 @@ public class Product extends BaseEntity {
 	@ManyToMany
 	@JoinTable(name = "product_supplier", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "supplier_id"))
 	private Set<Supplier> suppliers;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<LineItem> getLineItems() {
-		return lineItems;
-	}
-
-	public void setLineItems(List<LineItem> lineItems) {
-		this.lineItems = lineItems;
-	}
-
-	public Set<Supplier> getSuppliers() {
-		return suppliers;
-	}
-
-	public void setSuppliers(Set<Supplier> suppliers) {
-		this.suppliers = suppliers;
-	}
-	
 }

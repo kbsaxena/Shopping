@@ -6,8 +6,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name="lineItem")
+@Getter
+@Setter
 public class LineItem extends BaseEntity {
 
 	@Column
@@ -24,45 +29,4 @@ public class LineItem extends BaseEntity {
 	
 	@ManyToOne
 	private ShoppingCart cart;
-
-	public ShoppingCart getCart() {
-		return cart;
-	}
-
-	public void setCart(ShoppingCart cart) {
-		this.cart = cart;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Price getPrice() {
-		return price;
-	}
-
-	public void setPrice(Price price) {
-		this.price = price;
-	}
-
-	public Orders getOrder() {
-		return order;
-	}
-
-	public void setOrder(Orders order) {
-		this.order = order;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
 }

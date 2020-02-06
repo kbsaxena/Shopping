@@ -12,9 +12,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name="customer")
+@Getter
+@Setter
 public class Customer extends BaseEntity {
+	
+	public Customer() {
+		address = new ArrayList<>();
+		phoneNumbers = new TreeSet<>();
+	}
 	
 	@Column
 	private String email;
@@ -36,61 +46,4 @@ public class Customer extends BaseEntity {
 	
 	@OneToOne
 	private Account account;
-	
-	public Customer() {
-		address = new ArrayList<>();
-		phoneNumbers = new TreeSet<>();
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public void setPhoneNumbers(Set<Phone> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
-	}
 }
