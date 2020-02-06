@@ -3,6 +3,8 @@ package com.shopping.repositories;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -48,6 +50,22 @@ public class UserRepositoryTest {
 		assertNotNull(result.getCustomer().getPrimaryPhoneNumber());
 		assertEquals(result.getCustomer().getPrimaryPhoneNumber().getCountryCode(), user.getCustomer().getPrimaryPhoneNumber().getCountryCode());
 		assertEquals(result.getCustomer().getPrimaryPhoneNumber().getMobileNumber(), user.getCustomer().getPrimaryPhoneNumber().getMobileNumber());
+	}
+	
+	
+	@Test
+	public void testFindByUsername() {
+		User user = new User();
+		user.setId(9L);
+		user.setUsername(Constants.USERNAME);
+		user.setPassword(Constants.PASSWORD);
+		user.setUserState(UserState.NEW);
+		
+		userRepository.save(user);
+		
+		Optional<User> userOptional = userRepository.findByUsername(Constants.USERNAME);
+		
+		assertEquals(Constants.USERNAME, userOptional.get().getUsername());
 	}
 
 }
