@@ -16,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.shopping.Constants;
 import com.shopping.entities.User;
@@ -29,6 +30,9 @@ public class LoginServiceImplTest implements Constants {
 	
 	@InjectMocks
 	LoginServiceImpl loginService;
+	
+	@Mock
+	PasswordEncoder passwordEncoder;
 	
 	private User user;
 	
@@ -47,6 +51,7 @@ public class LoginServiceImplTest implements Constants {
 	public final void testLoginWithValidCredentials() {
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
+		when(passwordEncoder.matches(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
 		
 		boolean userResponse = loginService.login(USERNAME, PASSWORD);
 		
@@ -59,6 +64,7 @@ public class LoginServiceImplTest implements Constants {
 	public final void testLoginWithInValidCredentials() {
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
+		when(passwordEncoder.matches(Mockito.anyString(), Mockito.anyString())).thenReturn(false);
 		
 		boolean userResponse = loginService.login(USERNAME, USERNAME);
 		
@@ -71,6 +77,7 @@ public class LoginServiceImplTest implements Constants {
 	public final void testLoginWithInValidUser() {
 		
 		when(userRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.empty());
+		when(passwordEncoder.matches(Mockito.anyString(), Mockito.anyString())).thenReturn(false);
 		
 		Exception exception = assertThrows(RuntimeException.class, ()-> loginService.login(ADMIN, PASSWORD));
 		

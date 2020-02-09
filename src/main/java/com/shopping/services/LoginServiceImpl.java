@@ -16,14 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
+	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	public LoginServiceImpl(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
 
 	@Override
 	public boolean login(String username, String password) {
