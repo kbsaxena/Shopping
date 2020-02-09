@@ -2,9 +2,12 @@ package com.shopping.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shopping.entities.User;
+import com.shopping.exceptions.UserNotFoundException;
 import com.shopping.repositories.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginServiceImpl implements LoginService {
 
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public LoginServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -26,9 +32,9 @@ public class LoginServiceImpl implements LoginService {
 		Optional<User> userOptional = userRepository.findByUsername(username);
 		
 		if(!userOptional.isPresent()) {
-			throw new RuntimeException("User Does not exist");
+			throw new UserNotFoundException("User Does not exist");
 		} else {
-			return userOptional.get().getPassword().equals(password);
+			return passwordEncoder.matches(password, userOptional.get().getPassword());
 		}
 	}
 

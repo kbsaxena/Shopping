@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -35,18 +36,18 @@ public class Customer extends BaseEntity {
 	@Column
 	private Date dob;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Address> address;
 	
-	@OneToOne(mappedBy="customer")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="customer")
 	private Phone primaryPhoneNumber;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="customer")
 	private Set<Phone> phoneNumbers;
 	
-	@OneToOne(optional=true, mappedBy="customer")
+	@OneToOne(cascade = CascadeType.ALL, optional=true, mappedBy="customer")
 	private User user;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Account account;
 }
