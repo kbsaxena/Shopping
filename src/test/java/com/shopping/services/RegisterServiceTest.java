@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.shopping.Constants;
 import com.shopping.entities.Customer;
@@ -25,6 +26,9 @@ public class RegisterServiceTest {
 	
 	@Mock
 	private UserRepository userRepository;
+	
+	@Mock
+	private PasswordEncoder passwordEncoder;
 	
 	@BeforeEach
 	public void setUp() {
@@ -48,6 +52,7 @@ public class RegisterServiceTest {
 		user.setUserState(UserState.NEW);
 		
 		when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
+		when(passwordEncoder.encode(Mockito.anyString())).thenReturn(Constants.ENCODED_PASSWORD);
 		
 		User result = registerService.save(user);
 		

@@ -1,5 +1,6 @@
 package com.shopping.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,6 @@ public class Phone extends BaseEntity {
 	@Column
 	private String countryCode;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 }

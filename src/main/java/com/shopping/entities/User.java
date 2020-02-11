@@ -1,5 +1,6 @@
 package com.shopping.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -23,9 +24,9 @@ public class User extends BaseEntity {
 	@Column
 	private UserState userState;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	
-	@OneToOne(optional=true)
+	@OneToOne(cascade = CascadeType.ALL, optional=true)
 	private ShoppingCart cart;
 }
