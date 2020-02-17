@@ -7,13 +7,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="user")
 @Getter
 @Setter
+@NoArgsConstructor
 public class User extends BaseEntity {
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 
 	@Column
 	private String username;
