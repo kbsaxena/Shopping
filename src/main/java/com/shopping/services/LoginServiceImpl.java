@@ -36,11 +36,9 @@ public class LoginServiceImpl implements LoginService {
 			if(ObjectUtils.isNotEmpty(userDetails)) {
 				userOptional = Optional.of(userDetails);
 			}
-			
 		} else {
 			log.info("Checking By Username...");
 			userOptional = userRepository.findByUsername(username);
-			
 		}
 		
 		if (!userOptional.isPresent()) {
