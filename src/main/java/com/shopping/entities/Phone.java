@@ -15,12 +15,12 @@ import lombok.Setter;
 @Setter
 public class Phone extends BaseEntity {
 	
-	@Column
+	@Column(unique = true)
 	private String mobileNumber;
 	
 	@Column
 	private String countryCode;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Customer.class)
 	private Customer customer;
 }

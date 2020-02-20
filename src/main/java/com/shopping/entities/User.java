@@ -17,12 +17,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User extends BaseEntity {
 
-	public User(String username, String password) {
+	public User(String username, String password, Long id) {
+		super(id);
 		this.username = username;
-		this.password = password;
+		this.password = password;		
 	}
 
-	@Column
+	@Column(unique = true)
 	private String username;
 	
 	@Column

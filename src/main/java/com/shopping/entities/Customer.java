@@ -27,7 +27,7 @@ public class Customer extends BaseEntity {
 		phoneNumbers = new TreeSet<>();
 	}
 	
-	@Column
+	@Column(unique = true)
 	private String email;
 	
 	@Column
@@ -39,7 +39,7 @@ public class Customer extends BaseEntity {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Address> address;
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="customer")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Phone primaryPhoneNumber;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="customer")
